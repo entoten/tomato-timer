@@ -3,8 +3,7 @@
     "name": "tomato-timer",
     "compatibility_date": "2024-12-07",
     "assets": {
-        "directory": "./dist",
-        "binding": "ASSETS"
+        "directory": "./dist"
     },
     "observability": {
         "enabled": true
