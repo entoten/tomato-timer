@@ -12,6 +12,7 @@ const DEFAULT_SETTINGS: TimerSettings = {
   longBreakDuration: 15 * 60,
   longBreakInterval: 4,
   dailyGoal: 8,
+  visualTheme: 'memory',
 };
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
           timeLeft={timeLeft}
           totalDuration={getTotalDuration()}
           mode={mode}
+          theme={settings.visualTheme}
         />
 
         <Controls

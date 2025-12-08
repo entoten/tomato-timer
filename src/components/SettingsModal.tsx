@@ -83,6 +83,19 @@ export function SettingsModal({ isOpen, onClose, settings, onSave }: SettingsMod
                             className="w-full bg-slate-800 border-slate-700 rounded-lg p-2 text-white focus:ring-2 focus:ring-green-500 outline-none"
                         />
                     </div>
+
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium text-slate-300">Visual Theme</label>
+                        <select
+                            value={localSettings.visualTheme}
+                            onChange={(e) => setLocalSettings(prev => ({ ...prev, visualTheme: e.target.value as 'memory' | 'liquid' | 'erosion' }))}
+                            className="w-full bg-slate-800 border-slate-700 rounded-lg p-2 text-white focus:ring-2 focus:ring-blue-500 outline-none"
+                        >
+                            <option value="memory">Memory Blocks</option>
+                            <option value="liquid">Liquid Wave</option>
+                            <option value="erosion">Organic Erosion</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div className="mt-8">

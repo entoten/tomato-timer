@@ -17,6 +17,7 @@ export function usePomodoro(initialSettings: TimerSettings) {
     const [dailyCompleted, setDailyCompleted] = useState(0);
 
     const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+    const wakeLockRef = useRef<WakeLockSentinel | null>(null);
 
     // Load daily stats
     useEffect(() => {
@@ -36,6 +37,52 @@ export function usePomodoro(initialSettings: TimerSettings) {
             }
         }
     }, []);
+
+    // Handle Wake Lock
+    useEffect(() => {
+        const requestWakeLock = async () => {
+            if ('wakeLock' in navigator) {
+                try {
+                    const wakeLock = await navigator.wakeLock.request('screen');
+                    wakeLockRef.current = wakeLock;
+                    // console.log('Wake Lock active');
+                } catch (err: any) {
+                    console.error(`${err.name}, ${err.message}`);
+                }
+            }
+        };
+
+        const releaseWakeLock = async () => {
+            if (wakeLockRef.current) {
+                try {
+                    await wakeLockRef.current.release();
+                    wakeLockRef.current = null;
+                    // console.log('Wake Lock released');
+                } catch (err: any) {
+                    console.error(`${err.name}, ${err.message}`);
+                }
+            }
+        };
+
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === 'visible' && isActive) {
+                requestWakeLock();
+            }
+        };
+
+        if (isActive) {
+            requestWakeLock();
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+        } else {
+            releaseWakeLock();
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+        }
+
+        return () => {
+            releaseWakeLock();
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+        };
+    }, [isActive]);
 
     // Update daily stats
     const incrementDaily = useCallback(() => {
