@@ -96,6 +96,17 @@ export function SettingsModal({ isOpen, onClose, settings, onSave }: SettingsMod
                             <option value="erosion">Organic Erosion</option>
                         </select>
                     </div>
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium text-slate-300">Layout Style</label>
+                        <select
+                            value={localSettings.layout}
+                            onChange={(e) => setLocalSettings(prev => ({ ...prev, layout: e.target.value as 'vertical' | 'horizontal' }))}
+                            className="w-full bg-slate-800 border-slate-700 rounded-lg p-2 text-white focus:ring-2 focus:ring-blue-500 outline-none"
+                        >
+                            <option value="vertical">Vertical (Standard)</option>
+                            <option value="horizontal">Horizontal (Side-by-Side)</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div className="mt-8">

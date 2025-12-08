@@ -7,6 +7,7 @@ export interface TimerSettings {
     longBreakInterval: number; // sets required for a long break
     dailyGoal: number; // target sets for the day
     visualTheme: 'memory' | 'liquid' | 'erosion';
+    layout: 'vertical' | 'horizontal';
 }
 
 export interface PomodoroState {
