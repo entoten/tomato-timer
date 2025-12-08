@@ -94,6 +94,8 @@ export function SettingsModal({ isOpen, onClose, settings, onSave }: SettingsMod
                             <option value="memory">Memory Blocks</option>
                             <option value="liquid">Liquid Wave</option>
                             <option value="erosion">Organic Erosion</option>
+                            <option value="retro">Retro Concentric</option>
+                            <option value="pulse">Organic Pulse</option>
                         </select>
                     </div>
                     <div className="space-y-2">
