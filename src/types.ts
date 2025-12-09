@@ -6,7 +6,7 @@ export interface TimerSettings {
     longBreakDuration: number; // in seconds
     longBreakInterval: number; // sets required for a long break
     dailyGoal: number; // target sets for the day
-    visualTheme: 'memory' | 'liquid' | 'erosion' | 'retro' | 'pulse';
+    visualTheme: 'memory' | 'liquid' | 'erosion' | 'retro' | 'pulse' | 'diagram';
     layout: 'vertical' | 'horizontal';
 }
 

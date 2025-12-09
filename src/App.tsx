@@ -49,7 +49,7 @@ function App() {
       <header className="p-6 flex justify-between items-center max-w-2xl mx-auto w-full">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse" />
-          <span className="font-bold tracking-wider text-sm text-slate-400">MEMORY_TIMER_V1</span>
+          <span className="font-bold tracking-wider text-sm text-slate-400">TOMATO_TIMER</span>
         </div>
         <button
           onClick={() => setIsSettingsOpen(true)}
