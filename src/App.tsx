@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Settings } from 'lucide-react';
 import { cn } from './lib/utils';
 import { usePomodoro } from './hooks/usePomodoro';
@@ -15,6 +15,7 @@ const DEFAULT_SETTINGS: TimerSettings = {
   dailyGoal: 8,
   visualTheme: 'memory',
   layout: 'vertical',
+  showCurrentTime: false,
 };
 
 function App() {
@@ -42,14 +43,30 @@ function App() {
     }
   };
 
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-950 text-white flex flex-col font-sans selection:bg-red-500/30">
 
       {/* Header */}
       <header className="p-6 flex justify-between items-center max-w-2xl mx-auto w-full">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse" />
-          <span className="font-bold tracking-wider text-sm text-slate-400">TOMATO_TIMER</span>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse" />
+            <span className="font-bold tracking-wider text-sm text-slate-400">TOMATO_TIMER</span>
+          </div>
+          {settings.showCurrentTime && (
+            <div className="px-3 py-1 bg-slate-900 rounded-full border border-slate-800">
+              <span className="text-xs font-mono text-slate-300">
+                {currentTime.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit', hour12: false })}
+              </span>
+            </div>
+          )}
         </div>
         <button
           onClick={() => setIsSettingsOpen(true)}

@@ -8,6 +8,7 @@ export interface TimerSettings {
     dailyGoal: number; // target sets for the day
     visualTheme: 'memory' | 'liquid' | 'erosion' | 'retro' | 'pulse' | 'diagram';
     layout: 'vertical' | 'horizontal';
+    showCurrentTime: boolean;
 }
 
 export interface PomodoroState {

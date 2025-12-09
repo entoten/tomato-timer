@@ -1,4 +1,5 @@
 import { X } from 'lucide-react';
+import { cn } from '../lib/utils';
 import type { TimerSettings } from '../types';
 import { useState } from 'react';
 
@@ -110,6 +111,22 @@ export function SettingsModal({ isOpen, onClose, settings, onSave }: SettingsMod
                             <option value="vertical">Vertical (Standard)</option>
                             <option value="horizontal">Horizontal (Side-by-Side)</option>
                         </select>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-2">
+                        <label className="text-sm font-medium text-slate-300">Show Current Time</label>
+                        <button
+                            onClick={() => setLocalSettings(prev => ({ ...prev, showCurrentTime: !prev.showCurrentTime }))}
+                            className={cn(
+                                "w-11 h-6 rounded-full transition-colors relative",
+                                localSettings.showCurrentTime ? "bg-green-500" : "bg-slate-700"
+                            )}
+                        >
+                            <div className={cn(
+                                "absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform",
+                                localSettings.showCurrentTime ? "translate-x-5" : "translate-x-0"
+                            )} />
+                        </button>
                     </div>
                 </div>
 
